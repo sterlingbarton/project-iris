@@ -283,7 +283,7 @@ def check_session():
         if user_id:
             user = User.query.filter(User.id == user_id).first()
             if user:
-                print(user.to_dict())
+                pass
             else:
                 return {"message": "User not found"}
         else:
