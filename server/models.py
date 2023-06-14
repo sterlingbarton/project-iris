@@ -29,23 +29,23 @@ class User(db.Model, SerializerMixin):
     appointment = db.relationship('Appointment', back_populates='user')
     finance = db.relationship('Finance', back_populates='user')
 
-    # @validates('email')
-    # def validate_email(self, key, address):
-    #     if '@' not in address:
-    #         raise ValueError("Must enter a valid email")
-    #     return address
+    @validates('email')
+    def validate_email(self, key, address):
+        if '@' not in address:
+            raise ValueError("Must enter a valid email")
+        return address
 
-    # @hybrid_property
-    # def password_hash(self):
-    #     raise Exception('Password hashes may not be viewed')
+    @hybrid_property
+    def password_hash(self):
+        raise Exception('Password hashes may not be viewed')
 
-    # @password_hash.setter
-    # def password_hash(self, password):
-    #     password_hash = bcrypt.generate_password_hash(password.encode('utf-8'))
-    #     self._password_hash = password_hash.decode('utf-8')
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(password.encode('utf-8'))
+        self._password_hash = password_hash.decode('utf-8')
 
-    # def authenticate(self, password):
-    #     return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
 
 class Appointment(db.Model, SerializerMixin):
