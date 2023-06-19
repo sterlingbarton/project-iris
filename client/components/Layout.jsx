@@ -1,14 +1,13 @@
-// import OuterNav from "./NavbarOuter";
-// import InnerNav from "./NavbarInner";
+import OuterNav from "./OuterNav";
+import InnerNav from "./InnerNav";
 
-// function Layout({ children}) {
-//     return ( 
-//         <div>
-//             <OuterNav />
-//             <InnerNav />
-//             { children }
-//         </div>
-//      );
-// }
+export default function Layout({ children}) {
+    return ( 
+        <div>
+            <OuterNav />
+            <InnerNav />
+            { children }
+        </div>
+     );
+}
 
-// export default Layout;
