@@ -128,7 +128,7 @@ export default function OuterNav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://media.licdn.com/dms/image/D4E03AQEoSSLrCiBRiw/profile-displayphoto-shrink_400_400/0/1682359181635?e=1692835200&v=beta&t=jxXx3Tn0XydBbmzPgKdBtew3bwhJYQKcc1dBWU5xle8" />
               </IconButton>
             </Tooltip>
             <Menu

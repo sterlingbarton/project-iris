@@ -4,12 +4,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import TaskCard from '../components/TaskCard';
+import ApptCard from '../components/ApptCard';
+import FinanceCard from '../components/FinanceCard';
 
 
-export default function Home() {
-  // fetch('/hello')
-  // .then(r => r.json())
-  // .then(data => console.log(data))
+export default function Home({taskData, appointmentData, financeData}) {
+  console.log(taskData, appointmentData, financeData)
   return (
     <div>
          <Head>
@@ -21,33 +22,27 @@ export default function Home() {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={12} sm={4}>
+            <TaskCard />
+          </Grid>
+          <Grid xs={12} sm={4}>
+            <ApptCard />
+          </Grid>
+          <Grid xs={12} sm={4}>
+            <FinanceCard />
+          </Grid>
+          <Grid xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
-            h6. Heading
+            Google Calendar
             </Typography>
           </Grid>
           <Grid xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
-            h6. Heading
+            News
             </Typography>
           </Grid>
           <Grid xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
-            h6. Heading
-            </Typography>
-          </Grid>
-          <Grid xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
-            h6. Heading
-            </Typography>
-          </Grid>
-          <Grid xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
-            h6. Heading
-            </Typography>
-          </Grid>
-          <Grid xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom>
-            h6. Heading
+            Weather
             </Typography>
           </Grid>
         </Grid>
@@ -59,3 +54,19 @@ export default function Home() {
     </div>
   )
 }
+
+// export async function getStaticProps() {
+//   const res1 = await fetch('http://localhost:5555/tasks');
+//   const taskData = await res1.json();
+//   const res2 = await fetch('http://localhost:5555/appointments');
+//   const appointmentData = await res2.json();
+//   const res3 = await fetch('http://localhost:5555/finance');
+//   const financeData = await res3.json();
+//   return {
+//     props: {
+//       taskData,
+//       appointmentData,
+//       financeData
+//     },
+//   }
+// }
