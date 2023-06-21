@@ -9,8 +9,9 @@ import ApptCard from '../components/ApptCard';
 import FinanceCard from '../components/FinanceCard';
 
 
-export default function Home({taskData, appointmentData, financeData}) {
-  console.log(taskData, appointmentData, financeData)
+export default function Home(pageProps) {
+  // console.log(pageProps)
+
   return (
     <div>
          <Head>
@@ -55,12 +56,12 @@ export default function Home({taskData, appointmentData, financeData}) {
   )
 }
 
-// export async function getStaticProps() {
+// export async function getServerSideProps() {
 //   const res1 = await fetch('http://localhost:5555/tasks');
 //   const taskData = await res1.json();
 //   const res2 = await fetch('http://localhost:5555/appointments');
 //   const appointmentData = await res2.json();
-//   const res3 = await fetch('http://localhost:5555/finance');
+//   const res3 = await fetch('http://localhost:5555/finances');
 //   const financeData = await res3.json();
 //   return {
 //     props: {
@@ -69,4 +70,5 @@ export default function Home({taskData, appointmentData, financeData}) {
 //       financeData
 //     },
 //   }
+
 // }

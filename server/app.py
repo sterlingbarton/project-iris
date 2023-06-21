@@ -23,9 +23,10 @@ class Signup(Resource):
         last_name = request.get_json()['last_name']
         email = request.get_json()['email']
         profile_photo = request.get_json()['profile_photo']
-        
+
         if username and password:
-            new_user = User(username=username, first_name=first_name, last_name=last_name, email=email, profile_photo=profile_photo)
+            new_user = User(username=username, first_name=first_name,
+                            last_name=last_name, email=email, profile_photo=profile_photo)
             new_user.password_hash = password
 
             db.session.add(new_user)
@@ -35,6 +36,7 @@ class Signup(Resource):
 
             return new_user.to_dict(), 201
         return {}, 422
+
 
 class Login(Resource):
     def post(self):
@@ -47,7 +49,6 @@ class Login(Resource):
 
         if user.authenticate(password):
             session['user_id'] = user.id
-            print(user.id)
             return user.to_dict(), 200
         return None, 401
 
@@ -55,7 +56,9 @@ class Login(Resource):
 class Logout(Resource):
     def delete(self):
         session['user_id'] = None
+        print(session)
         return None, 204
+
 
 class UserByID(Resource):
     def get(self, id):
@@ -64,7 +67,7 @@ class UserByID(Resource):
             return user.to_dict(), 200
         except Exception:
             return {"error": "Unable to find user"}, 404
-    
+
     def patch(self, id):
         try:
             user = User.query.filter(User.id == id).first()
@@ -78,7 +81,7 @@ class UserByID(Resource):
                 return user.to_dict(), 200
         except Exception:
             return {"error": "Unable to update user."}, 404
-    
+
     def delete(self, id):
         try:
             user = User.query.filter(User.id == id).first()
@@ -87,6 +90,7 @@ class UserByID(Resource):
             return {}, 200
         except Exception:
             return {"error": "Unable to find user."}, 404
+
 
 class TasksPath(Resource):
     def get(self):
@@ -97,7 +101,8 @@ class TasksPath(Resource):
         try:
             new_task = Task(
                 name=request.get_json()['name'],
-                due_by=datetime.strptime(request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
+                due_by=datetime.strptime(
+                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
                 user_id=request.get_json()['user_id']
             )
             db.session.add(new_task)
@@ -114,7 +119,7 @@ class TaskByID(Resource):
             return task.to_dict(), 200
         except Exception:
             return {"error": "Unable to find task"}, 404
-        
+
     def patch(self, id):
         try:
             task = Task.query.filter(Task.id == id).first()
@@ -145,16 +150,18 @@ class TaskByID(Resource):
         except Exception:
             return {"error": "Unable to delete task."}, 404
 
+
 class AppointmentsPath(Resource):
     def get(self):
         appointments = [appt.to_dict() for appt in Appointment.query.all()]
         return appointments, 200
-    
+
     def post(self):
         try:
             new_appointment = Appointment(
                 name=request.get_json()['name'],
-                due_by=datetime.strptime(request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
+                due_by=datetime.strptime(
+                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
                 user_id=request.get_json()['user_id']
             )
             db.session.add(new_appointment)
@@ -162,18 +169,21 @@ class AppointmentsPath(Resource):
             return new_appointment.to_dict(), 201
         except Exception:
             return {"error": "Unable to create new appointment."}, 400
-    
+
+
 class AppointmentByID(Resource):
     def get(self, id):
         try:
-            appointment = Appointment.query.filter(Appointment.id == id).first()
+            appointment = Appointment.query.filter(
+                Appointment.id == id).first()
             return appointment.to_dict(), 200
         except Exception:
             return {"error": "Unable to find appointment"}, 404
-        
+
     def patch(self, id):
         try:
-            appointment = Appointment.query.filter(Appointment.id == id).first()
+            appointment = Appointment.query.filter(
+                Appointment.id == id).first()
             if appointment == None:
                 return {'error': 'Appointment not found'}, 404
             else:
@@ -194,23 +204,26 @@ class AppointmentByID(Resource):
 
     def delete(self, id):
         try:
-            appointment = Appointment.query.filter(Appointment.id == id).first()
+            appointment = Appointment.query.filter(
+                Appointment.id == id).first()
             db.session.delete(appointment)
             db.session.commit()
             return {}, 200
         except Exception:
             return {"error": "Unable to delete appointment."}, 404
 
+
 class FinancesPath(Resource):
     def get(self):
         finances = [finance.to_dict() for finance in Finance.query.all()]
         return finances, 200
-    
+
     def post(self):
         try:
             new_finance = Finance(
                 name=request.get_json()['name'],
-                due_by=datetime.strptime(request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
+                due_by=datetime.strptime(
+                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
                 user_id=request.get_json()['user_id']
             )
             db.session.add(new_finance)
@@ -219,6 +232,7 @@ class FinancesPath(Resource):
         except Exception:
             return {"error": "Unable to create new finance."}, 400
 
+
 class FinanceByID(Resource):
     def get(self, id):
         try:
@@ -226,7 +240,7 @@ class FinanceByID(Resource):
             return finance.to_dict(), 200
         except Exception:
             return {"error": "Unable to find finance"}, 404
-        
+
     def patch(self, id):
         try:
             finance = Finance.query.filter(Finance.id == id).first()
@@ -258,9 +272,18 @@ class FinanceByID(Resource):
         except Exception:
             return {"error": "Unable to delete finance."}, 404
 
+
+class GetUser(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+        user = User.query.filter(User.id == user_id).first()
+        return user.to_dict()
+
+
 api.add_resource(Logout, '/logout')
 api.add_resource(Login, '/login')
 api.add_resource(Signup, '/signup')
+api.add_resource(GetUser, '/check_session')
 
 api.add_resource(UserByID, '/users/<int:id>')
 
@@ -273,21 +296,27 @@ api.add_resource(AppointmentByID, '/appointments/<int:id>')
 api.add_resource(FinancesPath, '/finances')
 api.add_resource(FinanceByID, '/finances/<int:id>')
 
-#will get error on first check saying no user logged in b/c of the way this is written
-#refresh and error will go away
+# will get error on first check saying no user logged in b/c of the way this is written
+# refresh and error will go away
+
+
 @app.before_request
 def check_session():
     user_id = session.get('user_id')
+    print(session)
     free_paths = ['login', 'signup']
     if request.endpoint not in free_paths:
+        print('hello')
         if user_id:
             user = User.query.filter(User.id == user_id).first()
+            print(user)
             if user:
-                pass
+                user.to_dict()
             else:
                 return {"message": "User not found"}
         else:
             return {"message": "User not logged in"}, 401
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

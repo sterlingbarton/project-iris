@@ -3,18 +3,15 @@ const nextConfig = {
     reactStrictMode: true,
   }
   
-  module.exports = () => {
-    const rewrites = () => {
+  module.exports = {
+    async rewrites() {
       return [
         {
-          source: "/:path*",
+          source: "/api/:path*",
           destination: "http://localhost:5555/:path*",
         }
       ];
-    };
-    return {
-      rewrites,
-    };
+    },
   };
   
   // module.exports = nextConfig
