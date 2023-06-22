@@ -464,17 +464,6 @@ eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* har
 
 /***/ }),
 
-/***/ "./node_modules/@mui/material/utils/isMuiElement.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@mui/material/utils/isMuiElement.js ***!
-  \**********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval(__webpack_require__.ts("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/utils */ \"./node_modules/@mui/utils/esm/index.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (_mui_utils__WEBPACK_IMPORTED_MODULE_0__.unstable_isMuiElement);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvQG11aS9tYXRlcmlhbC91dGlscy9pc011aUVsZW1lbnQuanMiLCJtYXBwaW5ncyI6Ijs7QUFBbUU7QUFDbkUsK0RBQWUsNkRBQVkiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9fTl9FLy4vbm9kZV9tb2R1bGVzL0BtdWkvbWF0ZXJpYWwvdXRpbHMvaXNNdWlFbGVtZW50LmpzP2Q1ZTkiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdW5zdGFibGVfaXNNdWlFbGVtZW50IGFzIGlzTXVpRWxlbWVudCB9IGZyb20gJ0BtdWkvdXRpbHMnO1xuZXhwb3J0IGRlZmF1bHQgaXNNdWlFbGVtZW50OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/@mui/material/utils/isMuiElement.js\n"));
-
-/***/ }),
-
 /***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2FUsers%2Fsterlingbarton%2FDesktop%2Fproject-iris%2Fclient%2Fpages%2Fsignup.jsx&page=%2Fsignup!":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2FUsers%2Fsterlingbarton%2FDesktop%2Fproject-iris%2Fclient%2Fpages%2Fsignup.jsx&page=%2Fsignup! ***!

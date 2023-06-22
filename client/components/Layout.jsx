@@ -30,6 +30,16 @@ function Layout({ children }) {
                     isLoggedIn: true,
                     user: action.payload
                 }
+            case 'DELETE':
+                return{
+                    isLoggedIn: false,
+                    user: {}
+                }
+            case 'EDIT':
+                return{
+                    isLoggedIn: true,
+                    user: action.payload
+                }
             default:
                 return state
         }
