@@ -81,24 +81,7 @@ export default function OuterNav() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'roboto',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            IRIS
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -124,14 +107,39 @@ export default function OuterNav() {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: 'block', md: 'none' },
+                  display: { xs: 'block' },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant='h6' component='div' sx={{ flexGrow: 1 }} onClick={() => router.push('/tasks')}>
+                        Tasks
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={() => router.push('/appointments')}>
+                        Appointments
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={() => router.push('/finances')}>
+                        Finance
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        News
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Weather
+                    </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Calendar
+                    </Typography>
+                </MenuItem>
               </Menu>
             </Box>
           <Typography
@@ -141,7 +149,7 @@ export default function OuterNav() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex' },
               flexGrow: 1,
               fontFamily: 'roboto',
               fontWeight: 700,
@@ -152,17 +160,6 @@ export default function OuterNav() {
           >
             IRIS
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
                 {globalState.state.isLoggedIn ? 

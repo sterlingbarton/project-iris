@@ -1,9 +1,9 @@
 
-// export default function appointments() {
-//   return (
-//     <div>appointments</div>
-//   )
-// }
+export default function Appointments() {
+  return (
+    <div>appointments</div>
+  )
+}
 
 
 // export async function getStaticProps() {
