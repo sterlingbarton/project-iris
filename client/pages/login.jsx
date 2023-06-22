@@ -14,7 +14,7 @@ export default function SignIn() {
 
   const globalState = React.useContext(GlobalState)
 
-  // login user
+
   function handleUsername(e){
     setUsername(e.target.value)
 }
@@ -22,7 +22,7 @@ export default function SignIn() {
     setPassword(e.target.value)
   }
 
-  function handleLogin(e){
+  function handleLogIn(e){
     e.preventDefault()
     fetch('/api/login', {
       method: 'POST',
@@ -30,7 +30,7 @@ export default function SignIn() {
       body: JSON.stringify({username: username, password: password})
     })
     .then((r) => r.json())
-    .then(data => globalState.dispatch({ type: 'LOGIN', payload: data}))
+    .then(data => globalState.dispatch({ type: 'LOGIN', payload: data }))
     .then(() => router.push('/'))
   }
 
@@ -42,13 +42,12 @@ export default function SignIn() {
         }}
         noValidate
         autoComplete="off"
-        onSubmit={handleLogin}
+        onSubmit={handleLogIn}
         >
         <TextField
             required
             id="standard-required-username"
             label="Username"
-            placeholder="Username"
             helperText="Enter your username"
             variant="standard"
             name='username'
@@ -60,7 +59,6 @@ export default function SignIn() {
             id="standard-password-input"
             label="Password"
             type="password"
-            placeholder="Password"
             autoComplete="current-password"
             helperText="Enter your password"
             variant="standard"

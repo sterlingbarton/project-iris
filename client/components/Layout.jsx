@@ -24,6 +24,12 @@ function Layout({ children }) {
                 return{
                     user: action.payload
                 }
+            case 'SIGNUP':
+                return{
+                    ...state,
+                    isLoggedIn: true,
+                    user: action.payload
+                }
             default:
                 return state
         }

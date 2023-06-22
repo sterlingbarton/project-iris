@@ -22,11 +22,11 @@ class Signup(Resource):
         first_name = request.get_json()['first_name']
         last_name = request.get_json()['last_name']
         email = request.get_json()['email']
-        profile_photo = request.get_json()['profile_photo']
+        # profile_photo = request.get_json()['profile_photo']
 
         if username and password:
             new_user = User(username=username, first_name=first_name,
-                            last_name=last_name, email=email, profile_photo=profile_photo)
+                            last_name=last_name, email=email)
             new_user.password_hash = password
 
             db.session.add(new_user)
@@ -303,13 +303,10 @@ api.add_resource(FinanceByID, '/finances/<int:id>')
 @app.before_request
 def check_session():
     user_id = session.get('user_id')
-    print(session)
     free_paths = ['login', 'signup']
     if request.endpoint not in free_paths:
-        print('hello')
         if user_id:
             user = User.query.filter(User.id == user_id).first()
-            print(user)
             if user:
                 user.to_dict()
             else:
