@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from 'react'
-import OuterNav from "./OuterNav";
+import Nav from "./Nav";
 import SideBar from "./SideBar";
 
 const GlobalState = createContext(null);
@@ -51,7 +51,7 @@ function Layout({ children }) {
 
     return ( 
         <GlobalState.Provider value={{state, dispatch}}>
-            <OuterNav />
+            <Nav />
             <SideBar />
             { children }
         </GlobalState.Provider>
