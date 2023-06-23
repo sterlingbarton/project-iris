@@ -122,7 +122,7 @@ export default function OuterNav() {
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={() => router.push('/finances')}>
-                        Finance
+                        Finances
                     </Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>

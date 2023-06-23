@@ -39,7 +39,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Tasks)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"./node_modules/react/jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Tasks() {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        children: \"tasks\"\n    }, void 0, false, {\n        fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n        lineNumber: 4,\n        columnNumber: 5\n    }, this);\n} // export async function getStaticProps() {\n //     const res = await fetch('http://localhost:3001/tasks');\n //     const taskData = await res.json();\n //     return {\n //         props: {\n //           taskData,\n //         }\n //     }\n // }\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wYWdlcy90YXNrcy5qc3giLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUNlLFNBQVNBO0lBQ3RCLHFCQUNFLDhEQUFDQztrQkFBSTs7Ozs7O0FBRVQsRUFFQSwyQ0FBMkM7Q0FDM0MsOERBQThEO0NBQzlELHlDQUF5QztDQUN6QyxlQUFlO0NBQ2YsbUJBQW1CO0NBQ25CLHNCQUFzQjtDQUN0QixZQUFZO0NBQ1osUUFBUTtDQUNSLElBQUkiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9pcmlzLy4vcGFnZXMvdGFza3MuanN4PzY0ZjkiXSwic291cmNlc0NvbnRlbnQiOlsiXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBUYXNrcygpIHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2PnRhc2tzPC9kaXY+XG4gIClcbn1cblxuLy8gZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldFN0YXRpY1Byb3BzKCkge1xuLy8gICAgIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwOi8vbG9jYWxob3N0OjMwMDEvdGFza3MnKTtcbi8vICAgICBjb25zdCB0YXNrRGF0YSA9IGF3YWl0IHJlcy5qc29uKCk7XG4vLyAgICAgcmV0dXJuIHtcbi8vICAgICAgICAgcHJvcHM6IHtcbi8vICAgICAgICAgICB0YXNrRGF0YSxcbi8vICAgICAgICAgfVxuLy8gICAgIH1cbi8vIH0iXSwibmFtZXMiOlsiVGFza3MiLCJkaXYiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./pages/tasks.jsx\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Tasks)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"./node_modules/react/jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ \"next/head\");\n/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/material/Box */ \"@mui/material/Box\");\n/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_mui_material_Box__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nfunction Tasks() {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((_mui_material_Box__WEBPACK_IMPORTED_MODULE_2___default()), {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((next_head__WEBPACK_IMPORTED_MODULE_1___default()), {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"IRIS | Tasks\"\n                    }, void 0, false, {\n                        fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n                        lineNumber: 9,\n                        columnNumber: 13\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"link\", {\n                        rel: \"icon\",\n                        href: \"/favicon.ico\"\n                    }, void 0, false, {\n                        fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n                        lineNumber: 10,\n                        columnNumber: 13\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n                lineNumber: 8,\n                columnNumber: 9\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((_mui_material_Box__WEBPACK_IMPORTED_MODULE_2___default()), {\n                component: \"h2\",\n                children: \"Tasks\"\n            }, void 0, false, {\n                fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n                lineNumber: 12,\n                columnNumber: 9\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/Users/sterlingbarton/Desktop/project-iris/client/pages/tasks.jsx\",\n        lineNumber: 7,\n        columnNumber: 5\n    }, this);\n} // export async function getStaticProps() {\n //     const res = await fetch('http://localhost:3001/tasks');\n //     const taskData = await res.json();\n //     return {\n //         props: {\n //           taskData,\n //         }\n //     }\n // }\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wYWdlcy90YXNrcy5qc3giLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBNkI7QUFDTztBQUdyQixTQUFTRTtJQUN0QixxQkFDRSw4REFBQ0QsMERBQUdBOzswQkFDQSw4REFBQ0Qsa0RBQUlBOztrQ0FDRCw4REFBQ0c7a0NBQU07Ozs7OztrQ0FDUCw4REFBQ0M7d0JBQUtDLEtBQUk7d0JBQU9DLE1BQUs7Ozs7Ozs7Ozs7OzswQkFFMUIsOERBQUNMLDBEQUFHQTtnQkFBQ00sV0FBVTswQkFBSzs7Ozs7Ozs7Ozs7O0FBRzVCLEVBRUEsMkNBQTJDO0NBQzNDLDhEQUE4RDtDQUM5RCx5Q0FBeUM7Q0FDekMsZUFBZTtDQUNmLG1CQUFtQjtDQUNuQixzQkFBc0I7Q0FDdEIsWUFBWTtDQUNaLFFBQVE7Q0FDUixJQUFJIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vaXJpcy8uL3BhZ2VzL3Rhc2tzLmpzeD82NGY5Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBIZWFkIGZyb20gJ25leHQvaGVhZCc7XG5pbXBvcnQgQm94IGZyb20gJ0BtdWkvbWF0ZXJpYWwvQm94JztcblxuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBUYXNrcygpIHtcbiAgcmV0dXJuIChcbiAgICA8Qm94PlxuICAgICAgICA8SGVhZD5cbiAgICAgICAgICAgIDx0aXRsZT5JUklTIHwgVGFza3M8L3RpdGxlPlxuICAgICAgICAgICAgPGxpbmsgcmVsPVwiaWNvblwiIGhyZWY9XCIvZmF2aWNvbi5pY29cIiAvPiBcbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8Qm94IGNvbXBvbmVudD0naDInPlRhc2tzPC9Cb3g+XG4gICAgPC9Cb3g+XG4gIClcbn1cblxuLy8gZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldFN0YXRpY1Byb3BzKCkge1xuLy8gICAgIGNvbnN0IHJlcyA9IGF3YWl0IGZldGNoKCdodHRwOi8vbG9jYWxob3N0OjMwMDEvdGFza3MnKTtcbi8vICAgICBjb25zdCB0YXNrRGF0YSA9IGF3YWl0IHJlcy5qc29uKCk7XG4vLyAgICAgcmV0dXJuIHtcbi8vICAgICAgICAgcHJvcHM6IHtcbi8vICAgICAgICAgICB0YXNrRGF0YSxcbi8vICAgICAgICAgfVxuLy8gICAgIH1cbi8vIH0iXSwibmFtZXMiOlsiSGVhZCIsIkJveCIsIlRhc2tzIiwidGl0bGUiLCJsaW5rIiwicmVsIiwiaHJlZiIsImNvbXBvbmVudCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./pages/tasks.jsx\n");
 
 /***/ }),
 
@@ -73,6 +73,16 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 /***/ }),
 
+/***/ "@mui/material/Box":
+/*!************************************!*\
+  !*** external "@mui/material/Box" ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = require("@mui/material/Box");
+
+/***/ }),
+
 /***/ "../route-module":
 /*!************************************************************************!*\
   !*** external "next/dist/server/future/route-modules/route-module.js" ***!
@@ -90,6 +100,16 @@ module.exports = require("next/dist/server/future/route-modules/route-module.js"
 /***/ ((module) => {
 
 module.exports = require("next/dist/server/render.js");
+
+/***/ }),
+
+/***/ "next/head":
+/*!****************************!*\
+  !*** external "next/head" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = require("next/head");
 
 /***/ }),
 

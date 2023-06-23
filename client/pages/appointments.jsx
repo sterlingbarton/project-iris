@@ -1,7 +1,16 @@
+import Head from 'next/head';
+import Box from '@mui/material/Box';
+
 
 export default function Appointments() {
   return (
-    <div>appointments</div>
+    <Box>
+        <Head>
+            <title>IRIS | Appointments</title>
+            <link rel="icon" href="/favicon.ico" /> 
+        </Head>
+        <Box component='h2'>Appointments</Box>
+    </Box>
   )
 }
 

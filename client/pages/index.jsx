@@ -7,10 +7,16 @@ import Typography from '@mui/material/Typography';
 import TaskCard from '../components/TaskCard';
 import ApptCard from '../components/ApptCard';
 import FinanceCard from '../components/FinanceCard';
+import { GlobalState } from '../components/Layout';
+import {useRouter} from 'next/router'
 
 
 export default function Home(pageProps) {
   // console.log(pageProps)
+
+  const globalState = React.useContext(GlobalState)
+
+  const router = useRouter();
 
   return (
     <div>
@@ -22,13 +28,13 @@ export default function Home(pageProps) {
       <main>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid xs={12} sm={4}>
+          <Grid xs={12} sm={4} onClick={() => router.push('/tasks')}>
             <TaskCard />
           </Grid>
-          <Grid xs={12} sm={4}>
+          <Grid xs={12} sm={4} onClick={() => router.push('/appointments')}>
             <ApptCard />
           </Grid>
-          <Grid xs={12} sm={4}>
+          <Grid xs={12} sm={4} onClick={() => router.push('/finances')}>
             <FinanceCard />
           </Grid>
           <Grid xs={12} sm={4}>

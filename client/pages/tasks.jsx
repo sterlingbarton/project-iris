@@ -1,7 +1,16 @@
+import Head from 'next/head';
+import Box from '@mui/material/Box';
+
 
 export default function Tasks() {
   return (
-    <div>tasks</div>
+    <Box>
+        <Head>
+            <title>IRIS | Tasks</title>
+            <link rel="icon" href="/favicon.ico" /> 
+        </Head>
+        <Box component='h2'>Tasks</Box>
+    </Box>
   )
 }
 
