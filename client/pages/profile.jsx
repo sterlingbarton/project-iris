@@ -40,9 +40,9 @@ export default function UserPage() {
         >
           {!open ? 
           <Button variant="outlined" onClick={handleClickOpen}>Edit Profile</Button> 
-          :
+          : 
           <EditProfile open={open} setOpen={setOpen}/>
-          }
+          } 
         <Button variant="outlined" onClick={deleteProfile}>Delete Profile</Button>
       </ButtonGroup>
     </Box>

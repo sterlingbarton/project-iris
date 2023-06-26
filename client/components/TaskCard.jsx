@@ -1,10 +1,14 @@
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, ButtonGroup } from '@mui/material';
+import Add from './Add';
 
 export default function TaskCard({taskData, setTaskData}) {
+    const [open, setOpen] = React.useState(false);
+
     console.log(taskData)
 
     const tasks = taskData.map((task) => {
@@ -30,9 +34,9 @@ export default function TaskCard({taskData, setTaskData}) {
     //     .then(data => setTaskData(...taskData, data))
     }
 
-    function handleAddTask(){
-        console.log('need to add another modal')
-    }
+    const handleClickOpen = () => {
+        setOpen(!open);
+      };
   return (
     <Card 
     sx={{ maxWidth: 345 }} 
@@ -41,9 +45,10 @@ export default function TaskCard({taskData, setTaskData}) {
           <Typography gutterBottom variant="h5" component="div">
             Tasks
           </Typography>
-          <Button variant="outlined" size="small" color="primary" onClick={handleAddTask}>
+            <Button variant="outlined" size="small" color="primary" onClick={handleClickOpen}>
             +
-          </Button>
+            </Button>
+            <Add open={open} setOpen={setOpen}/>
           <Typography variant="ul" color="text.secondary">
             {tasks}
           </Typography>
