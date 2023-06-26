@@ -1,25 +1,23 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
-
+import FinanceCard from '../components/FinanceCard';
 
 export default function Finances() {
+    const [financeData, setFinanceData] = useState([])
+
+    useEffect(() => {
+        fetch('/api/finances')
+        .then(r => r.json())
+        .then(data => setFinanceData(data))
+    }, [])
   return (
     <Box>
         <Head>
             <title>IRIS | Finances</title>
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
-        <Box component='h2'>Finances</Box>
+        <FinanceCard financeData={financeData} setFinanceData={setFinanceData}/>
     </Box>
   )
 }
-
-// export async function getStaticProps() {
-//     const res = await fetch('http://localhost:3001/finance');
-//     const financeData = await res.json();
-//     return {
-//           props: {
-//             financeData
-//           },
-//         }
-//   }

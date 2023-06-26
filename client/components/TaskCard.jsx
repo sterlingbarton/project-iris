@@ -1,30 +1,53 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import Box from '@mui/material/Box';
+import { Button, ButtonGroup } from '@mui/material';
 
-export default function TaskCard() {
+export default function TaskCard({taskData, setTaskData}) {
+    console.log(taskData)
+
+    const tasks = taskData.map((task) => {
+        return <Box variant='li' key={task.id}>
+        <Typography variant='h4'>{task.due_by}</Typography>
+        <Typography variant='p'>{task.name}</Typography>
+        <ButtonGroup>
+            <Button variant="outlined" size="small" color="primary" onClick={handleEditTask}>Edit</Button>
+            <Button variant="outlined" size="small" color="primary" onClick={handleDeleteTask}>Delete</Button>
+        </ButtonGroup>
+        </Box>
+    })
+    
+    function handleEditTask(){
+        console.log('need to add edit task functionality')
+    }
+
+    function handleDeleteTask(){
+    //     fetch(`/api/tasks/${task.id}` , {
+    //         method: 'DELETE',
+    //     })
+    //     .then((r) => r.json())
+    //     .then(data => setTaskData(...taskData, data))
+    }
+
+    function handleAddTask(){
+        console.log('need to add another modal')
+    }
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card 
+    sx={{ maxWidth: 345 }} 
+    >
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Tasks
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Button variant="outlined" size="small" color="primary" onClick={handleAddTask}>
+            +
+          </Button>
+          <Typography variant="ul" color="text.secondary">
+            {tasks}
           </Typography>
         </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          +
-        </Button>
-        <Button size="small" color="primary">
-          +
-        </Button>
-      </CardActions>
     </Card>
   );
 }

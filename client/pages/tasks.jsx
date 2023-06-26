@@ -1,25 +1,25 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
+import TaskCard from '../components/TaskCard';
+import { Task } from '@mui/icons-material';
 
 
 export default function Tasks() {
+    const [taskData, setTaskData] = useState([])
+
+    useEffect(() => {
+        fetch('/api/tasks')
+        .then(r => r.json())
+        .then(data => setTaskData(data))
+    }, [])
   return (
     <Box>
         <Head>
             <title>IRIS | Tasks</title>
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
-        <Box component='h2'>Tasks</Box>
+        <TaskCard taskData={taskData} setTaskData={setTaskData}/>
     </Box>
   )
 }
-
-// export async function getStaticProps() {
-//     const res = await fetch('http://localhost:3001/tasks');
-//     const taskData = await res.json();
-//     return {
-//         props: {
-//           taskData,
-//         }
-//     }
-// }

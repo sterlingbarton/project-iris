@@ -1,26 +1,25 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
+import ApptCard from '../components/ApptCard';
 
 
 export default function Appointments() {
+    const [appointmentData, setAppointmentData] = useState([])
+
+    useEffect(() => {
+        fetch('/api/appointments')
+        .then(r => r.json())
+        .then(data => setAppointmentData(data))
+    }, [])
   return (
     <Box>
         <Head>
             <title>IRIS | Appointments</title>
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
-        <Box component='h2'>Appointments</Box>
+        <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
     </Box>
   )
 }
 
-
-// export async function getStaticProps() {
-//     const res = await fetch('http://localhost:3001/appointments');
-//     const appointmentData = await res.json();
-//     return {
-//       props: {
-//         appointmentData
-//       },
-//     }
-//   }

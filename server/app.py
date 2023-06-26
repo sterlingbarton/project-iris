@@ -302,6 +302,7 @@ api.add_resource(FinanceByID, '/finances/<int:id>')
 
 @app.before_request
 def check_session():
+    print(session)
     user_id = session.get('user_id')
     free_paths = ['login', 'signup']
     if request.endpoint not in free_paths:

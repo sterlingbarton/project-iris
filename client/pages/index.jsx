@@ -11,8 +11,22 @@ import { GlobalState } from '../components/Layout';
 import {useRouter} from 'next/router'
 
 
-export default function Home(pageProps) {
-  // console.log(pageProps)
+export default function Home() {
+  const [taskData, setTaskData] = React.useState([])
+  const [appointmentData, setAppointmentData] = React.useState([])
+  const [financeData, setFinanceData] = React.useState([])
+
+  React.useEffect(() => {
+    fetch('/api/tasks')
+    .then(r => r.json())
+    .then(data => setTaskData(data))
+    fetch('/api/appointments')
+    .then(r => r.json())
+    .then(data => setAppointmentData(data))
+    fetch('/api/finances')
+    .then(r => r.json())
+    .then(data => setFinanceData(data))
+  }, [])
 
   const globalState = React.useContext(GlobalState)
 
@@ -29,13 +43,13 @@ export default function Home(pageProps) {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={12} sm={4} onClick={() => router.push('/tasks')}>
-            <TaskCard />
+            <TaskCard taskData={taskData}/>
           </Grid>
           <Grid xs={12} sm={4} onClick={() => router.push('/appointments')}>
-            <ApptCard />
+            <ApptCard appointmentData={appointmentData}/>
           </Grid>
           <Grid xs={12} sm={4} onClick={() => router.push('/finances')}>
-            <FinanceCard />
+            <FinanceCard financeData={financeData}/>
           </Grid>
           <Grid xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>
@@ -61,20 +75,3 @@ export default function Home(pageProps) {
     </div>
   )
 }
-
-// export async function getServerSideProps() {
-//   const res1 = await fetch('http://localhost:5555/tasks');
-//   const taskData = await res1.json();
-//   const res2 = await fetch('http://localhost:5555/appointments');
-//   const appointmentData = await res2.json();
-//   const res3 = await fetch('http://localhost:5555/finances');
-//   const financeData = await res3.json();
-//   return {
-//     props: {
-//       taskData,
-//       appointmentData,
-//       financeData
-//     },
-//   }
-
-// }
