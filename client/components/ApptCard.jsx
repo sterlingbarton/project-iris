@@ -21,7 +21,7 @@ export default function AppointmentCard({appointmentData, setAppointmentData, re
     };
 
     const appointments = appointmentData.map(appointment => {
-        return <Box variant='li' key={appointment.id}>
+        return <Box variant='li' key={appointment.name}>
         <Typography variant='h4'>{moment(appointment.due_by).format('LLL')}</Typography>
         <Typography variant='p'>{appointment.name}</Typography>
         <ButtonGroup>

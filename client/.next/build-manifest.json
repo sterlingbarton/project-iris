@@ -22,10 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/appointments": [
+    "/finances": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/appointments.js"
+      "static/chunks/pages/finances.js"
+    ],
+    "/profile": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/profile.js"
     ]
   },
   "ampFirstPages": []

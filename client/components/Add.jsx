@@ -70,14 +70,14 @@ export default function Add({
             })
             .then((r) => {
                 if (r.ok){
-                  return r.json()
+                    <Alert severity="success">Add task successful</Alert>
+                    return r.json()
               }
               else{
-                console.log('Failed to add task')
+                <Alert severity="error">Failed to add task.</Alert>
               }
             })
             .then(data => setTaskData([...taskData, data]))
-            .then(<Alert severity="success">Add task successful</Alert>)
         }else if(type == 'finances'){
             const newObj = {
                 name: formData.name,
@@ -90,14 +90,14 @@ export default function Add({
             })
             .then((r) => {
               if (r.ok){
+                <Alert severity="success">Add finance successful</Alert>
                 return r.json()
               }
               else{
-                console.log('Failed to add finance')
+                <Alert severity="error">Failed to add finance.</Alert>
               }
             })
             .then(data => setFinanceData([...financeData, data]))
-            .then(() => <Alert severity="success">Add finance successful</Alert>)
 
         }else if(type == 'appointments'){
             const newObj = {
@@ -111,14 +111,14 @@ export default function Add({
             })
             .then((r) => {
               if (r.ok){
+                <Alert severity="success">Add appointment successful</Alert>
                 return r.json()
               }
               else{
-                console.log('Failed to add appointment')
+                <Alert severity="error">Failed to add appointment.</Alert>
               }
             })
             .then(data => setAppointmentData([...appointmentData, data]))
-            .then(<Alert severity="success">Add appointment successful</Alert>)
         }
     }else if(!formData.name){
         return <Alert severity="error">Please enter a name.</Alert>

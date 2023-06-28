@@ -20,7 +20,7 @@ export default function FinanceCard({financeData, setFinanceData, refetch}) {
     };
     console.log(financeData)
     const finances = financeData.map(finance => {
-        return <Box variant='li' key={finance.id}>
+        return <Box variant='li' key={finance.name}>
             <Typography variant='h4'>{moment(finance.due_by).format('LLL')}</Typography>
             <Typography variant='p'>{finance.name}</Typography>
             <ButtonGroup>

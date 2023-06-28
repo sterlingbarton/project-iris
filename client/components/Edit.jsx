@@ -7,6 +7,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import Alert from '@mui/material/Alert';
+import moment from 'moment';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -63,60 +65,63 @@ export default function Edit({
                 name: formData.name,
                 due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
             }
-            // fetch(`/api/tasks/${currentId}`, {
-            //     method: 'PATCH',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify(newObj)
-            // })
-            // .then((r) => {
-            //   if (r.ok){
-            //     r.json()
-            //   }
-            //   else{
-            //     console.log('Failed to update task')
-            //   }
-            // })
-            // .then(data => setTaskData(...taskData, data))
+            fetch(`/api/tasks/${currentId}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+              if (r.ok){
+                <Alert severity="success">Update task successful</Alert>
+                return r.json()
+              }
+              else{
+                <Alert severity="error">Failed to update task.</Alert>
+              }
+            })
+            .then(data => setTaskData([...taskData, data]))
         }else if(type == 'finances'){
             console.log(type, formData)
             const newObj = {
                 name: formData.name,
                 due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
             }
-            // fetch(`/api/finances/${currentId}`, {
-            //     method: 'PATCH',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify(newObj)
-            // })
-            // .then((r) => {
-            //   if (r.ok){
-            //     r.json()
-            //   }
-            //   else{
-            //     console.log('Failed to update finance')
-            //   }
-            // })
-            // .then(data => setFinanceData(...financeData, data))
+            fetch(`/api/finances/${currentId}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+              if (r.ok){
+                <Alert severity="success">Update finance successful</Alert>
+                return r.json()
+              }
+              else{
+                <Alert severity="error">Failed to update finance.</Alert>
+              }
+            })
+            .then(data => setFinanceData([...financeData, data]))
         }else if(type == 'appointments'){
             console.log(type, formData)
             const newObj = {
                 name: formData.name,
                 due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
             }
-            // fetch(`/api/appointments/${currentId}`, {
-            //     method: 'PATCH',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify(newObj)
-            // })
-            // .then((r) => {
-            //   if (r.ok){
-            //     r.json()
-            //   }
-            //   else{
-            //     console.log('Failed to update appointment')
-            //   }
-            // })
-            // .then(data => setAppointmentData(...appointmentData, data))
+            fetch(`/api/appointments/${currentId}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+              if (r.ok){
+                <Alert severity="success">Update appointment successful</Alert>
+                return r.json()
+              }
+              else{
+                <Alert severity="error">Failed to update appointment.</Alert>
+              }
+            })
+            .then(data => setAppointmentData([...appointmentData, data]))
         }
     }else if(!formData.name){
         return <Alert severity="error">Please enter a name.</Alert>

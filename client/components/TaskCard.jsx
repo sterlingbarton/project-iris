@@ -20,7 +20,7 @@ export default function TaskCard({taskData, setTaskData, refetch}) {
     };
 
     const tasks = taskData.map((task) => {
-        return <Box variant='li' key={task.id}>
+        return <Box variant='li' key={task.name}>
         <Typography variant='h4'>{moment(task.due_by).format('LLL')}</Typography>
         <Typography variant='p'>{task.name}</Typography>
         <ButtonGroup>
