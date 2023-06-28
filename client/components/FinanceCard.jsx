@@ -6,33 +6,35 @@ import Box from '@mui/material/Box';
 import { Button, ButtonGroup } from '@mui/material';
 import Add from './Add';
 import Edit from './Edit'
+import moment from 'moment';
 
 
-export default function FinanceCard({financeData, setFinanceData}) {
+export default function FinanceCard({financeData, setFinanceData, refetch}) {
     const [open, setOpen] = React.useState(false);
     const [openEdit, setOpenEdit] = React.useState(false);
+    const [currentId, setCurrentId] = React.useState(null)
 
-    const handleOpenEdit = () => {
+    const handleOpenEdit = (id) => {
         setOpenEdit(!openEdit);
+        setCurrentId(id)
     };
-
+    console.log(financeData)
     const finances = financeData.map(finance => {
         return <Box variant='li' key={finance.id}>
-            <Typography variant='h4'>{finance.due_by}</Typography>
+            <Typography variant='h4'>{moment(finance.due_by).format('LLL')}</Typography>
             <Typography variant='p'>{finance.name}</Typography>
             <ButtonGroup>
-                <Button variant="outlined" size="small" color="primary" onClick={handleOpenEdit}>Edit</Button>
-                <Button variant="outlined" size="small" color="primary" onClick={handleDeleteFinance}>Delete</Button>
+                <Button variant="outlined" size="small" color="primary" onClick={() => handleOpenEdit(finance.id)}>Edit</Button>
+                <Button variant="outlined" size="small" color="primary" onClick={() => handleDeleteFinance(finance.id)}>Delete</Button>
             </ButtonGroup>
             </Box>
     })
 
-    function handleDeleteFinance(){
-    //     fetch(`/api/finances/${finance.id}` , {
-    //         method: 'DELETE',
-    //     })
-    //     .then((r) => r.json())
-    //     .then(data => setFinanceData(...financeData, data))
+    function handleDeleteFinance(id){
+        fetch(`/api/finances/${id}` , {
+            method: 'DELETE',
+        })
+        .then(() => refetch())
     }
 
     const handleClickOpen = () => {
@@ -48,8 +50,8 @@ export default function FinanceCard({financeData, setFinanceData}) {
           <Button variant="outlined" size="small" color="primary" onClick={handleClickOpen}>
           +
           </Button>
-          <Add open={open} setOpen={setOpen} type={'finances'}/>
-          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'finances'} financeData={financeData} setFinanceData={setFinanceData}/>
+          <Add open={open} setOpen={setOpen} type={'finances'} financeData={financeData} setFinanceData={setFinanceData}/>
+          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'finances'} financeData={financeData} setFinanceData={setFinanceData} currentId={currentId}/>
           <Typography variant="ul" color="text.secondary">
             {finances}
           </Typography>

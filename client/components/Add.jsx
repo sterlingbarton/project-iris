@@ -7,7 +7,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import Alert from '@mui/material/Alert';
 import { format, isAfter } from 'date-fns'
+import moment from 'moment';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -26,13 +28,9 @@ export default function Add({
     setFinanceData
   }) {
     const [formData, setFormData] = React.useState({
-        id: "",
         name: "",
-        due_by: "",
+        due_by: null,
     })
-
-  const today = new Date();
-  const formattedDate = format(today, 'yyyy/MM/dd')
 
   function handleChange(e) {
     setFormData({
@@ -43,59 +41,89 @@ export default function Add({
 
   const handleClose = () => {
     setOpen(!open);
+    setFormData({
+        name: "",
+        due_by: null,
+    })
   };
+
+  function handleDateChange(e){
+        setFormData({
+            ...formData,
+            due_by: e
+        })
+  }
 
   function handleAdd(e){
     handleClose()
     e.preventDefault()
-    if (type == 'tasks'){
-        console.log(type, formData)
-         // fetch(`/api/tasks`, {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(formData)
-        // })
-        // .then((r) => {
-        //   if (r.ok){
-        //     r.json()
-        //   }
-        //   else{
-        //     console.log('Failed to add task')
-        //   }
-        // })
-        // .then(data => setTaskData(...taskData, data))
-    }else if(type == 'finances'){
-        console.log(type, formData)
-        // fetch(`/api/finances`, {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(formData)
-        // })
-        // .then((r) => {
-        //   if (r.ok){
-        //     r.json()
-        //   }
-        //   else{
-        //     console.log('Failed to add finance')
-        //   }
-        // })
-        // .then(data => setFinanceData(...financeData, data))
-    }else if(type == 'appointments'){
-        console.log(type, formData)
-        // fetch(`/api/appointments`, {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(formData)
-        // })
-        // .then((r) => {
-        //   if (r.ok){
-        //     r.json()
-        //   }
-        //   else{
-        //     console.log('Failed to add appointment')
-        //   }
-        // })
-        // .then(data => setAppointmentData(...appointmentData, data))
+    if (formData.name != '' && formData.due_by != null){
+        if (type == 'tasks'){
+            const newObj = {
+                name: formData.name,
+                due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
+            }
+            fetch(`/api/tasks`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+                if (r.ok){
+                  return r.json()
+              }
+              else{
+                console.log('Failed to add task')
+              }
+            })
+            .then(data => setTaskData([...taskData, data]))
+            .then(<Alert severity="success">Add task successful</Alert>)
+        }else if(type == 'finances'){
+            const newObj = {
+                name: formData.name,
+                due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
+            }
+            fetch(`/api/finances`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+              if (r.ok){
+                return r.json()
+              }
+              else{
+                console.log('Failed to add finance')
+              }
+            })
+            .then(data => setFinanceData([...financeData, data]))
+            .then(() => <Alert severity="success">Add finance successful</Alert>)
+
+        }else if(type == 'appointments'){
+            const newObj = {
+                name: formData.name,
+                due_by: moment(formData.due_by).format('YYYY-MM-DD HH:mm')
+            }
+            fetch(`/api/appointments`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newObj)
+            })
+            .then((r) => {
+              if (r.ok){
+                return r.json()
+              }
+              else{
+                console.log('Failed to add appointment')
+              }
+            })
+            .then(data => setAppointmentData([...appointmentData, data]))
+            .then(<Alert severity="success">Add appointment successful</Alert>)
+        }
+    }else if(!formData.name){
+        return <Alert severity="error">Please enter a name.</Alert>
+    }else if(!formData.due_by){
+        return <Alert severity="error">Enter a date in the format YYYY/MM/DD HH:MM AM/PM</Alert>
     }
   }
 
@@ -110,6 +138,7 @@ export default function Add({
         <DialogTitle>Add</DialogTitle>
         <DialogContent>
          <TextField
+            required
             autoFocus
             margin="dense"
             id="name"
@@ -120,10 +149,12 @@ export default function Add({
             value={formData.name}
             onChange={handleChange}
           />
-           <DateTimeField 
+           <DateTimeField
+           required 
            name='due_by'
-        //    value={formData.due_by}
-        //    onChange={handleChange}
+           format='YYYY/MM/DD hh:mm a'
+           value={formData.due_by}
+           onChange={handleDateChange}
            />
         </DialogContent>
         <DialogActions>

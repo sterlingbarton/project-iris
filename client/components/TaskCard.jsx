@@ -6,33 +6,35 @@ import Box from '@mui/material/Box';
 import { Button, ButtonGroup } from '@mui/material';
 import Add from './Add';
 import Edit from './Edit'
+import moment from 'moment';
 
 
-export default function TaskCard({taskData, setTaskData}) {
+export default function TaskCard({taskData, setTaskData, refetch}) {
     const [open, setOpen] = React.useState(false);
     const [openEdit, setOpenEdit] = React.useState(false);
+    const [currentId, setCurrentId] = React.useState(null)
 
-    const handleOpenEdit = () => {
+    const handleOpenEdit = (id) => {
         setOpenEdit(!openEdit);
+        setCurrentId(id)
     };
 
     const tasks = taskData.map((task) => {
         return <Box variant='li' key={task.id}>
-        <Typography variant='h4'>{task.due_by}</Typography>
+        <Typography variant='h4'>{moment(task.due_by).format('LLL')}</Typography>
         <Typography variant='p'>{task.name}</Typography>
         <ButtonGroup>
-            <Button variant="outlined" size="small" color="primary" onClick={handleOpenEdit}>Edit</Button>
-            <Button variant="outlined" size="small" color="primary" onClick={handleDeleteTask}>Delete</Button>
+            <Button variant="outlined" size="small" color="primary" onClick={() => handleOpenEdit(task.id)}>Edit</Button>
+            <Button variant="outlined" size="small" color="primary" onClick={() => handleDeleteTask(task.id)}>Delete</Button>
         </ButtonGroup>
         </Box>
     })
 
-    function handleDeleteTask(){
-    //     fetch(`/api/tasks/${task.id}` , {
-    //         method: 'DELETE',
-    //     })
-    //     .then((r) => r.json())
-    //     .then(data => setTaskData(...taskData, data))
+    function handleDeleteTask(id){
+        fetch(`/api/tasks/${id}` , {
+            method: 'DELETE',
+        })
+        .then(() => refetch())
     }
 
     const handleClickOpen = () => {
@@ -48,8 +50,8 @@ export default function TaskCard({taskData, setTaskData}) {
             <Button variant="outlined" size="small" color="primary" onClick={handleClickOpen}>
             +
             </Button>
-            <Add open={open} setOpen={setOpen} type={'tasks'}/>
-            <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'tasks'} taskData={taskData} setTaskData={setTaskData}/>
+            <Add open={open} setOpen={setOpen} type={'tasks'} taskData={taskData} setTaskData={setTaskData}/>
+            <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'tasks'} taskData={taskData} setTaskData={setTaskData} currentId={currentId}/>
           <Typography variant="ul" color="text.secondary">
             {tasks}
           </Typography>

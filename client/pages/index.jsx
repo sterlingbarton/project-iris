@@ -43,13 +43,13 @@ export default function Home() {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid xs={12} sm={4} onClick={() => router.push('/tasks')}>
-            <TaskCard taskData={taskData}/>
+            <TaskCard taskData={taskData} setTaskData={setTaskData}/>
           </Grid>
           <Grid xs={12} sm={4} onClick={() => router.push('/appointments')}>
-            <ApptCard appointmentData={appointmentData}/>
+            <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
           </Grid>
           <Grid xs={12} sm={4} onClick={() => router.push('/finances')}>
-            <FinanceCard financeData={financeData}/>
+            <FinanceCard financeData={financeData} setFinanceData={setFinanceData}/>
           </Grid>
           <Grid xs={12} sm={4}>
             <Typography variant="h6" gutterBottom>

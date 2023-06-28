@@ -6,32 +6,36 @@ import Box from '@mui/material/Box';
 import { Button, ButtonGroup } from '@mui/material';
 import Add from './Add';
 import Edit from './Edit'
+import moment from 'moment';
 
-export default function AppointmentCard({appointmentData, setAppointmentData}) {
+
+export default function AppointmentCard({appointmentData, setAppointmentData, refetch}) {
     const [open, setOpen] = React.useState(false);
     const [openEdit, setOpenEdit] = React.useState(false);
+    const [currentId, setCurrentId] = React.useState(null)
 
-    const handleOpenEdit = () => {
+
+    const handleOpenEdit = (id) => {
         setOpenEdit(!openEdit);
+        setCurrentId(id)
     };
 
     const appointments = appointmentData.map(appointment => {
         return <Box variant='li' key={appointment.id}>
-        <Typography variant='h4'>{appointment.due_by}</Typography>
+        <Typography variant='h4'>{moment(appointment.due_by).format('LLL')}</Typography>
         <Typography variant='p'>{appointment.name}</Typography>
         <ButtonGroup>
-            <Button variant="outlined" size="small" color="primary" onClick={handleOpenEdit}>Edit</Button>
-            <Button variant="outlined" size="small" color="primary" onClick={handleDeleteAppt}>Delete</Button>
+            <Button variant="outlined" size="small" color="primary" onClick={() => handleOpenEdit(appointment.id)}>Edit</Button>
+            <Button variant="outlined" size="small" color="primary" onClick={() => handleDeleteAppt(appointment.id)}>Delete</Button>
         </ButtonGroup>
         </Box>
     })
 
-    function handleDeleteAppt(){
-    //     fetch(`/api/appointments/${appointment.id}` , {
-    //         method: 'DELETE',
-    //     })
-    //     .then((r) => r.json())
-    //     .then(data => setAppointmentData(...appointmentData, data))
+    function handleDeleteAppt(id){
+        fetch(`/api/appointments/${id}` , {
+            method: 'DELETE',
+        })
+        .then(() => refetch())
     }
 
     const handleClickOpen = () => {
@@ -47,8 +51,8 @@ export default function AppointmentCard({appointmentData, setAppointmentData}) {
           <Button variant="outlined" size="small" color="primary" onClick={handleClickOpen}>
           +
           </Button>
-          <Add open={open} setOpen={setOpen} type={'appointments'}/>
-          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
+          <Add open={open} setOpen={setOpen} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
+          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData} currentId={currentId}/>
           <Typography variant="ul" color="text.secondary">
             {appointments}
           </Typography>
