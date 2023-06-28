@@ -8,7 +8,6 @@ import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
 import Alert from '@mui/material/Alert';
-import { format, isAfter } from 'date-fns'
 import moment from 'moment';
 
 
@@ -70,7 +69,7 @@ export default function Add({
             })
             .then((r) => {
                 if (r.ok){
-                    <Alert severity="success">Add task successful</Alert>
+                    <Alert severity="success">Add task successful.</Alert>
                     return r.json()
               }
               else{
@@ -90,7 +89,7 @@ export default function Add({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Add finance successful</Alert>
+                <Alert severity="success">Add finance successful.</Alert>
                 return r.json()
               }
               else{
@@ -111,7 +110,7 @@ export default function Add({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Add appointment successful</Alert>
+                <Alert severity="success">Add appointment successful.</Alert>
                 return r.json()
               }
               else{

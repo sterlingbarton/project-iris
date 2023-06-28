@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import * as React from 'react';
 import Head from 'next/head';
 import Box from '@mui/material/Box';
 import FinanceCard from '../components/FinanceCard';
 
 
 export default function Finances() {
-    const [financeData, setFinanceData] = useState([])
+    const [financeData, setFinanceData] = React.useState([])
 
     const refetch = () => {
         fetch('/api/finances')
@@ -13,7 +13,7 @@ export default function Finances() {
         .then(data => setFinanceData(data))
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         fetch('/api/finances')
         .then(r => r.json())
         .then(data => setFinanceData(data))
@@ -24,7 +24,9 @@ export default function Finances() {
             <title>IRIS | Finances</title>
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
-        <FinanceCard financeData={financeData} setFinanceData={setFinanceData} refetch={refetch}/>
+        <main>
+            <FinanceCard financeData={financeData} setFinanceData={setFinanceData} refetch={refetch}/>
+        </main>
     </Box>
   )
 }

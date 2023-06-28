@@ -1,6 +1,8 @@
 import * as React from 'react';
+import {useRouter} from 'next/router'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -9,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Slide from '@mui/material/Slide';
 import { GlobalState } from '../components/Layout';
-import {useRouter} from 'next/router'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -48,11 +49,11 @@ export default function EditProfile({open, setOpen}) {
     })
     .then((r) => {
       if (r.ok){
-        r.json()
+        <Alert severity="success">Edit profile successful.</Alert>
+        return r.json()
       }
       else{
-        console.log('Failed to update profile')
-      }
+        <Alert severity="error">Please fill out all fields.</Alert>      }
     })
     .then(data => globalState.dispatch({ type: 'EDIT', payload: data }))
     .then(() => router.push('/profile'))
@@ -68,12 +69,26 @@ export default function EditProfile({open, setOpen}) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <IconButton aria-label="close" size="small">
-          <CloseRoundedIcon fontSize="inherit" />
+        <IconButton aria-label="close" size="small" sx={{
+          justifyContent: 'right',
+          pr: '.75rem',
+          pt: '.75rem',
+        }}>
+          <CloseRoundedIcon fontSize="inherit" onClick={handleClose}/>
         </IconButton>
-        <DialogTitle>{"Edit Profile"}</DialogTitle>
-        <DialogContent>
-           <TextField
+        <DialogTitle sx={{
+          pt: '0',
+          pb: '.5rem',
+          fontSize: '28px'
+        }}>{"Edit Profile"}</DialogTitle>
+        <DialogContent sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          pb: '.5rem'
+        }}>
+          <Box variant='div'>
+            <TextField
               autoFocus
               id="standard-first-name"
               label="First Name"
@@ -92,6 +107,7 @@ export default function EditProfile({open, setOpen}) {
               value={formData.last_name}
               onChange={handleChange}
             />
+          </Box>
             <TextField
               id="standard-username"
               label="Username"
@@ -99,6 +115,7 @@ export default function EditProfile({open, setOpen}) {
               variant="standard"
               name='username'
               size="small"
+              margin='normal'
               value={formData.username}
               onChange={handleChange}
             />
@@ -110,11 +127,16 @@ export default function EditProfile({open, setOpen}) {
               variant="standard"
               name='email'
               size="small"
+              margin='normal'
               value={formData.email}
               onChange={handleChange}
             />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{
+          pb: '1rem',
+          pr: '1rem',
+          pt: '0'
+        }}>
           <Button onClick={handleProfileChange}>Save</Button>
         </DialogActions>
       </Dialog>

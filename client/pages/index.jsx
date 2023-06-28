@@ -1,6 +1,6 @@
-import Head from 'next/head';
-// import styles from '../styles/Home.module.css';
 import * as React from 'react';
+import Head from 'next/head';
+import {useRouter} from 'next/router'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,6 @@ import TaskCard from '../components/TaskCard';
 import ApptCard from '../components/ApptCard';
 import FinanceCard from '../components/FinanceCard';
 import { GlobalState } from '../components/Layout';
-import {useRouter} from 'next/router'
 
 
 export default function Home() {
@@ -42,36 +41,33 @@ export default function Home() {
       <main>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid xs={12} sm={4} onClick={() => router.push('/tasks')}>
+          <Grid xs={12} onClick={() => router.push('/tasks')}>
             <TaskCard taskData={taskData} setTaskData={setTaskData}/>
           </Grid>
-          <Grid xs={12} sm={4} onClick={() => router.push('/appointments')}>
+          <Grid xs={12} onClick={() => router.push('/appointments')}>
             <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
           </Grid>
-          <Grid xs={12} sm={4} onClick={() => router.push('/finances')}>
+          <Grid xs={12} onClick={() => router.push('/finances')}>
             <FinanceCard financeData={financeData} setFinanceData={setFinanceData}/>
           </Grid>
-          <Grid xs={12} sm={4}>
+          {/* <Grid xs={12}>
             <Typography variant="h6" gutterBottom>
             Google Calendar
             </Typography>
           </Grid>
-          <Grid xs={12} sm={4}>
+          <Grid xs={12}>
             <Typography variant="h6" gutterBottom>
             News
             </Typography>
           </Grid>
-          <Grid xs={12} sm={4}>
+          <Grid xs={12}>
             <Typography variant="h6" gutterBottom>
             Weather
             </Typography>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
       </main>
-
-      <footer>
-      </footer>
     </div>
   )
 }

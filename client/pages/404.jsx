@@ -13,11 +13,13 @@ export default function NotFound() {
             <title>IRIS | Page not found</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Box sx={{'margin': '2em'}}>
-            <Typography variant='h1'>Oooops...</Typography>
-            <Typography variant='h2'>This page cannot be found.</Typography>
-            <Typography variant='p'>Go back to&nbsp;<Link href={'/'}>Home</Link></Typography>
-        </Box>
+        <main>
+            <Box sx={{'margin': '2em'}}>
+                <Typography variant='h1'>Oooops...</Typography>
+                <Typography variant='h2'>This page cannot be found.</Typography>
+                <Typography variant='p'>Go back to&nbsp;<Link href={'/'}>Home</Link></Typography>
+            </Box>
+        </main>
         </>
      );
 }

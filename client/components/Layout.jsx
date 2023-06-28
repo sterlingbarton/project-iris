@@ -1,8 +1,8 @@
-import { createContext, useContext, useReducer } from 'react'
+import * as React from 'react';
 import Nav from "./Nav";
 import SideBar from "./SideBar";
 
-const GlobalState = createContext(null);
+const GlobalState = React.createContext(null);
 
 function Layout({ children }) {
 
@@ -44,7 +44,7 @@ function Layout({ children }) {
         }
     }
 
-    const [state, dispatch] = useReducer(reducer, {
+    const [state, dispatch] = React.useReducer(reducer, {
         isLoggedIn: false,
         user: {}
     })
@@ -52,7 +52,7 @@ function Layout({ children }) {
     return ( 
         <GlobalState.Provider value={{state, dispatch}}>
             <Nav />
-            <SideBar />
+            {/* <SideBar /> */}
             { children }
         </GlobalState.Provider>
      );

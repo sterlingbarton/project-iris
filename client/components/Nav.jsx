@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useRouter} from 'next/router'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,7 +13,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { GlobalState } from './Layout';
-import {useRouter} from 'next/router'
 
 
 export default function OuterNav() {

@@ -72,7 +72,7 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update task successful</Alert>
+                <Alert severity="success">Update task successful.</Alert>
                 return r.json()
               }
               else{
@@ -93,7 +93,7 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update finance successful</Alert>
+                <Alert severity="success">Update finance successful.</Alert>
                 return r.json()
               }
               else{
@@ -114,7 +114,7 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update appointment successful</Alert>
+                <Alert severity="success">Update appointment successful.</Alert>
                 return r.json()
               }
               else{
@@ -126,7 +126,7 @@ export default function Edit({
     }else if(!formData.name){
         return <Alert severity="error">Please enter a name.</Alert>
     }else if(!formData.due_by){
-        return <Alert severity="error">Enter a date in the format YYYY/MM/DD HH:MM AM/PM</Alert>
+        return <Alert severity="error">Enter a date in the format YYYY/MM/DD HH:MM AM/PM.</Alert>
     }
   }
 

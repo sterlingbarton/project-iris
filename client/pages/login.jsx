@@ -1,16 +1,21 @@
 import * as React from 'react';
+import Head from "next/head";
+import {useRouter} from 'next/router'
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 import TextField from '@mui/material/TextField';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import { GlobalState } from '../components/Layout';
-import {useRouter} from 'next/router'
 
 
 export default function SignIn() {
+  const router = useRouter();
+
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
-
-  const router = useRouter();
 
   const globalState = React.useContext(GlobalState)
 
@@ -35,39 +40,72 @@ export default function SignIn() {
   }
 
   return (
-    <Box
-        component="form"
-        sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleLogIn}
-        >
-        <TextField
-            required
-            id="standard-required-username"
-            label="Username"
-            helperText="Enter your username"
-            variant="standard"
-            name='username'
-            value={username}
-            onChange={handleUsername}
-            />
-        <TextField
-            error
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            helperText="Enter your password"
-            variant="standard"
-            name='password'
-            value={password}
-            onChange={handlePassword}
-            />
-        <Button variant="outlined" type='submit'>Submit</Button>
-    </Box>
+    <>
+        <Head>
+          <title>IRIS | Login</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <Card sx={{
+            margin: '3rem auto',
+            maxWidth: '700px',
+          }}>
+            <CardContent sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+
+            }}>
+              <Box
+                component="form"
+                sx={{
+                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                onSubmit={handleLogIn}
+              >
+                <TextField
+                    required
+                    id="standard-required-username"
+                    label="Username"
+                    helperText="Enter your username"
+                    variant="standard"
+                    name='username'
+                    value={username}
+                    onChange={handleUsername}
+                    />
+                <TextField
+                    required
+                    id="standard-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    helperText="Enter your password"
+                    variant="standard"
+                    name='password'
+                    value={password}
+                    onChange={handlePassword}
+                    />
+                <CardActions>
+                  <ButtonGroup 
+                      variant="outlined" 
+                      aria-label="outlined button group"
+                      sx={{
+                        display: 'block',
+                        margin: '0 auto'
+                      }}
+                      >
+                      <Button variant="outlined" type='submit'>Submit</Button>
+                      <Button variant="outlined" onClick={() => router.push('/signup')} >Sign Up</Button>
+                  </ButtonGroup>
+                </CardActions>
+              </Box>
+            </CardContent>
+          </Card>
+        </main>
+    </>
   )
 }
 

@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
+import * as React from 'react';
 import Head from 'next/head';
-import Box from '@mui/material/Box';
 import TaskCard from '../components/TaskCard';
-import { Task } from '@mui/icons-material';
 
 
 export default function Tasks() {
-    const [taskData, setTaskData] = useState([])
+    const [taskData, setTaskData] = React.useState([])
 
     const refetch = () => {
         fetch('/api/tasks')
@@ -14,18 +12,20 @@ export default function Tasks() {
         .then(data => setTaskData(data))
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         fetch('/api/tasks')
         .then(r => r.json())
         .then(data => setTaskData(data))
     }, [])
   return (
-    <Box>
+    <>
         <Head>
             <title>IRIS | Tasks</title>
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
-        <TaskCard taskData={taskData} setTaskData={setTaskData} refetch={refetch}/>
-    </Box>
+        <main>
+            <TaskCard taskData={taskData} setTaskData={setTaskData} refetch={refetch}/>
+        </main>
+    </>
   )
 }
