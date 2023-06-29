@@ -19,8 +19,6 @@ export default function OuterNav() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     
-    const pages = ['Tasks', 'Appointments', 'Finances', 'News', 'Weather', 'Calendar']
-
     const router = useRouter();
 
     const globalState = React.useContext(GlobalState)
@@ -125,7 +123,7 @@ export default function OuterNav() {
                         Finances
                     </Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
+                {/* <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         News
                     </Typography>
@@ -139,7 +137,7 @@ export default function OuterNav() {
                     <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Calendar
                     </Typography>
-                </MenuItem>
+                </MenuItem> */}
               </Menu>
             </Box>
           <Typography

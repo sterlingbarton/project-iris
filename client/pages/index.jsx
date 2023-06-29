@@ -7,29 +7,41 @@ import Typography from '@mui/material/Typography';
 import TaskCard from '../components/TaskCard';
 import ApptCard from '../components/ApptCard';
 import FinanceCard from '../components/FinanceCard';
-import { GlobalState } from '../components/Layout';
-
 
 export default function Home() {
+  const router = useRouter();
+
   const [taskData, setTaskData] = React.useState([])
   const [appointmentData, setAppointmentData] = React.useState([])
   const [financeData, setFinanceData] = React.useState([])
 
   React.useEffect(() => {
     fetch('/api/tasks')
-    .then(r => r.json())
+    .then((r) => {
+      if(!r.ok){
+          router.push('/unauthorized')
+          return []
+      }else{
+          return r.json()
+      }})
     .then(data => setTaskData(data))
     fetch('/api/appointments')
-    .then(r => r.json())
+    .then((r) => {
+      if(!r.ok){
+          return []
+      }else{
+          return r.json()
+      }})
     .then(data => setAppointmentData(data))
     fetch('/api/finances')
-    .then(r => r.json())
+    .then((r) => {
+      if(!r.ok){
+          return []
+      }else{
+          return r.json()
+      }})
     .then(data => setFinanceData(data))
   }, [])
-
-  const globalState = React.useContext(GlobalState)
-
-  const router = useRouter();
 
   return (
     <div>

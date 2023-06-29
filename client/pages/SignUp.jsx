@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import { GlobalState } from '../components/Layout';
 
 
@@ -33,6 +34,7 @@ export default function SignUp() {
 
     function handleSignUp(e){
         e.preventDefault()
+        
         const newUser = {
             first_name: formData.first_name,
             last_name: formData.last_name,
@@ -40,15 +42,20 @@ export default function SignUp() {
             username: formData.username,
             password: formData.password
         }
-        fetch('/api/signup', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(newUser)
-        })
-        .then((r) => r.json())
-        .then(data => globalState.dispatch({ type: 'SIGNUP', payload: data }))
-        .then(() => router.push('/'))
+        if(!Object.values(newUser).includes('')){
+            fetch('/api/signup', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(newUser)
+            })
+            .then((r) => r.json())
+            .then(data => globalState.dispatch({ type: 'SIGNUP', payload: data }))
+            .then(() => router.push('/'))
+        }else {
+            <Alert severity="error">Please fill out all fields.</Alert>      
+        }
     }
+    
 
   return (
     <>
@@ -63,12 +70,12 @@ export default function SignUp() {
             }}>
                 <Box
                     component="form"
-                    sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    }}
                     noValidate
                     autoComplete="off"
                     onSubmit={handleSignUp}
+                    sx={{
+                        '& .MuiTextField-root': { m: 1 },
+                        }}
                 >
                     <CardContent sx={{
                         display: 'flex',
@@ -77,17 +84,19 @@ export default function SignUp() {
                         justifyContent: 'center',
 
                     }}>
-                        <TextField
-                            required
-                            id="standard-required-email"
-                            label="Email"
-                            variant="standard"
-                            name='email'
-                            fullWidth
-                            value={formData.email}
-                            onChange={handleChange}
-                            />
-                        <Box variant='div'>
+                            <TextField
+                                required
+                                id="standard-required-email"
+                                label="Email"
+                                variant="standard"
+                                name='email'
+                                value={formData.email}
+                                onChange={handleChange}
+                                sx={{
+                                    width: '352px'
+                                    }}
+                                />
+                        <Box>
                             <TextField
                                 required
                                 id="standard-required-first-name"
@@ -109,7 +118,7 @@ export default function SignUp() {
                                 onChange={handleChange}
                                 />
                         </Box>
-                        <Box variant='div'>
+                        <Box>
                             <TextField
                                 required
                                 id="standard-required-username"
@@ -137,7 +146,9 @@ export default function SignUp() {
                                 aria-label="outlined button group"
                                 sx={{
                                 display: 'block',
-                                margin: '0 auto'
+                                mx: 'auto',
+                                mt: '.5rem',
+                                mb: '0'
                                 }}
                                 >
                                 <Button variant="outlined" type='submit'>Submit</Button>

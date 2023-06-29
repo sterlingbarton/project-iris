@@ -8,17 +8,17 @@ import CardActions from '@mui/material/CardActions';
 import TextField from '@mui/material/TextField';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import { GlobalState } from '../components/Layout';
 
 
-export default function SignIn() {
+export default function LogIn() {
   const router = useRouter();
 
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
   const globalState = React.useContext(GlobalState)
-
 
   function handleUsername(e){
     setUsername(e.target.value)
@@ -29,14 +29,19 @@ export default function SignIn() {
 
   function handleLogIn(e){
     e.preventDefault()
-    fetch('/api/login', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username: username, password: password})
-    })
-    .then((r) => r.json())
-    .then(data => globalState.dispatch({ type: 'LOGIN', payload: data }))
-    .then(() => router.push('/'))
+    if(username && password){
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({username: username, password: password})
+      })
+      .then((r) => r.json())
+      .then(data => globalState.dispatch({ type: 'LOGIN', payload: data }))
+      .then(() => router.push('/'))
+    }else{
+      <Alert severity="error">Please fill out all fields.</Alert>      
+    }
+
   }
 
   return (

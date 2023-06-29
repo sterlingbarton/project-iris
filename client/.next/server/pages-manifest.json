@@ -2,9 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/finances": "pages/finances.js",
-  "/tasks": "pages/tasks.js",
-  "/profile": "pages/profile.js",
-  "/appointments": "pages/appointments.js"
+  "/profile": "pages/profile.js"
 }

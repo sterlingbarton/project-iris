@@ -1,9 +1,12 @@
 import * as React from 'react';
 import Head from 'next/head';
+import {useRouter} from 'next/router';
 import TaskCard from '../components/TaskCard';
 
 
 export default function Tasks() {
+    const router = useRouter()
+
     const [taskData, setTaskData] = React.useState([])
 
     const refetch = () => {
@@ -14,9 +17,16 @@ export default function Tasks() {
 
     React.useEffect(() => {
         fetch('/api/tasks')
-        .then(r => r.json())
+        .then((r) => {
+            if(!r.ok){
+                router.push('/unauthorized')
+                return []
+            }else{
+                return r.json()
+            }})
         .then(data => setTaskData(data))
     }, [])
+    
   return (
     <>
         <Head>

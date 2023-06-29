@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Slide from '@mui/material/Slide';
+import Alert from '@mui/material/Alert';
 import { GlobalState } from '../components/Layout';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -42,21 +43,23 @@ export default function EditProfile({open, setOpen}) {
   function handleProfileChange(e){
     handleClose()
     e.preventDefault()
-    fetch(`/api/users/${globalState.state.user.id}`, {
+    if(!Object.values(formData).includes('')){
+      fetch(`/api/users/${globalState.state.user.id}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
-    })
-    .then((r) => {
-      if (r.ok){
-        <Alert severity="success">Edit profile successful.</Alert>
-        return r.json()
-      }
-      else{
-        <Alert severity="error">Please fill out all fields.</Alert>      }
-    })
-    .then(data => globalState.dispatch({ type: 'EDIT', payload: data }))
-    .then(() => router.push('/profile'))
+      })
+      .then((r) => {
+        if (r.ok){
+          <Alert severity="success">Edit profile successful.</Alert>
+          return r.json()
+        }
+      })
+      .then(data => globalState.dispatch({ type: 'EDIT', payload: data }))
+      .then(() => router.push('/profile'))
+    }else{
+      <Alert severity="error">Please fill out all fields.</Alert>      
+    }
   }
 
 

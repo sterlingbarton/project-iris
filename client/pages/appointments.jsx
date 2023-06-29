@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Box from '@mui/material/Box';
+import {useRouter} from 'next/router';
 import ApptCard from '../components/ApptCard';
 
-
 export default function Appointments() {
+    const router = useRouter()
+
     const [appointmentData, setAppointmentData] = React.useState([])
 
     const refetch = () => {
@@ -15,11 +16,18 @@ export default function Appointments() {
 
     React.useEffect(() => {
         fetch('/api/appointments')
-        .then(r => r.json())
+        .then((r) => {
+            if(!r.ok){
+                router.push('/unauthorized')
+                return []
+            }else{
+                return r.json()
+            }})
         .then(data => setAppointmentData(data))
     }, [])
+
   return (
-    <Box>
+    <>
         <Head>
             <title>IRIS | Appointments</title>
             <link rel="icon" href="/favicon.ico" /> 
@@ -27,7 +35,7 @@ export default function Appointments() {
         <main>
             <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData} refetch={refetch}/>
         </main>
-    </Box>
+    </>
   )
 }
 

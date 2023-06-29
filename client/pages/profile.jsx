@@ -14,8 +14,9 @@ import EditProfile from '../components/EditProfile';
 export default function Profile() {
   const router = useRouter();
 
-  const [open, setOpen] = React.useState(false);
   const globalState = React.useContext(GlobalState)
+
+  const [open, setOpen] = React.useState(false);
 
   function handleClickOpen(){
     setOpen(!open)
