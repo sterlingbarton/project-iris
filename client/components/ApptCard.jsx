@@ -87,7 +87,7 @@ export default function AppointmentCard({appointmentData, setAppointmentData, re
                 }
             </Box>
           <Add open={open} setOpen={setOpen} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
-          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData} currentId={currentId}/>
+          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'appointments'} appointmentData={appointmentData} setAppointmentData={setAppointmentData} currentId={currentId} refetch={refetch}/>
           <List>
             {appointments}
           </List>

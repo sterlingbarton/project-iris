@@ -29,17 +29,37 @@ export default function LogIn() {
 
   function handleLogIn(e){
     e.preventDefault()
-    if(username && password){
+    if(!username){
+      globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Must enter a username', alertState: 'error'} })
+      setTimeout(() => {
+        globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+      }, 5000) 
+    }else if(!password){
+      globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Must enter a password', alertState: 'error'} })
+      setTimeout(() => {
+        globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+      }, 5000) 
+    }else if(username != '' && password != ''){
       fetch('/api/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: username, password: password})
       })
-      .then((r) => r.json())
+      .then((r) => {
+        if(r.ok){
+          globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Login success', alertState: 'success'} })
+          setTimeout(() => {
+            globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+          }, 5000)
+          return r.json()}
+        })
       .then(data => globalState.dispatch({ type: 'LOGIN', payload: data }))
       .then(() => router.push('/'))
     }else{
-      <Alert severity="error">Please fill out all fields.</Alert>      
+      globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Failed to log in', alertState: 'error'} })
+      setTimeout(() => {
+        globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+      }, 5000)
     }
 
   }

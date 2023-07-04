@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Nav from "./Nav";
+import { Snackbar, Alert } from '@mui/material'
 import SideBar from "./SideBar";
+import { useEffect } from 'react';
 
 const GlobalState = React.createContext(null);
 
@@ -39,20 +41,52 @@ function Layout({ children }) {
                     isLoggedIn: true,
                     user: action.payload
                 }
+            case 'OPEN-SNACKBAR': 
+                return {
+                    ...state,
+                    snackbarState: {
+                        ...state.alertState,
+                        ...action.payload,
+                        open: true
+                    }
+                }
+            case 'CLOSE-SNACKBAR': {
+                state.snackbarState.open = false;
+                return { ...state };
+            }
             default:
-                return state
+                return {...state}
         }
     }
 
     const [state, dispatch] = React.useReducer(reducer, {
         isLoggedIn: false,
-        user: {}
+        user: {},
+        snackbarState: {
+            open: false,
+            alertState: '',
+            message: ''
+          }
+
     })
 
     return ( 
         <GlobalState.Provider value={{state, dispatch}}>
             <Nav />
             {/* <SideBar /> */}
+            <Snackbar
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                open={state.snackbarState.open}
+                message={state.snackbarState.message}
+            >
+            <Alert
+                severity={
+                state.snackbarState.alertState ? state.snackbarState.alertState : undefined
+                }
+            >
+            {state.snackbarState.message}
+            </Alert>
+            </Snackbar>
             { children }
         </GlobalState.Provider>
      );

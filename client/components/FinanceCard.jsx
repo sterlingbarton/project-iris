@@ -86,7 +86,7 @@ export default function FinanceCard({financeData, setFinanceData, refetch}) {
             }
           </Box>
           <Add open={open} setOpen={setOpen} type={'finances'} financeData={financeData} setFinanceData={setFinanceData}/>
-          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'finances'} financeData={financeData} setFinanceData={setFinanceData} currentId={currentId}/>
+          <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'finances'} financeData={financeData} setFinanceData={setFinanceData} currentId={currentId} refetch={refetch}/>
           <List>
             {finances}
           </List>

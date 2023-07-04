@@ -87,7 +87,7 @@ export default function TaskCard({taskData, setTaskData, refetch}) {
                 }
             </Box>
             <Add open={open} setOpen={setOpen} type={'tasks'} taskData={taskData} setTaskData={setTaskData}/>
-            <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'tasks'} taskData={taskData} setTaskData={setTaskData} currentId={currentId}/>
+            <Edit openEdit={openEdit} setOpenEdit={setOpenEdit} type={'tasks'} taskData={taskData} setTaskData={setTaskData} currentId={currentId} refetch={refetch}/>
           <List>
             {tasks}
           </List>

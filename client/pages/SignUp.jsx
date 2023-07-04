@@ -34,7 +34,6 @@ export default function SignUp() {
 
     function handleSignUp(e){
         e.preventDefault()
-        
         const newUser = {
             first_name: formData.first_name,
             last_name: formData.last_name,
@@ -42,17 +41,26 @@ export default function SignUp() {
             username: formData.username,
             password: formData.password
         }
-        if(!Object.values(newUser).includes('')){
+        if(Object.values(newUser).includes('')){
+            globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Must fill out all fields', alertState: 'error'} })
+            setTimeout(() => {
+              globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+            }, 5000)
+        }else {
             fetch('/api/signup', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(newUser)
             })
-            .then((r) => r.json())
+            .then((r) => {
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Success', alertState: 'success'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000) 
+                return r.json()
+            })
             .then(data => globalState.dispatch({ type: 'SIGNUP', payload: data }))
             .then(() => router.push('/'))
-        }else {
-            <Alert severity="error">Please fill out all fields.</Alert>      
         }
     }
     

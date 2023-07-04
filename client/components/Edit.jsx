@@ -7,8 +7,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import TextField from '@mui/material/TextField';
 import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
-import Alert from '@mui/material/Alert';
 import moment from 'moment';
+import { GlobalState } from '../components/Layout';
+
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -19,19 +20,17 @@ export default function Edit({
     openEdit, 
     setOpenEdit, 
     type, 
-    taskData, 
-    setTaskData, 
-    appointmentData, 
-    setAppointmentData, 
-    financeData, 
-    setFinanceData,
-    currentId
+    currentId,
+    refetch
   }) {
+
+    const globalState = React.useContext(GlobalState)
 
     const [formData, setFormData] = React.useState({
         name: "",
         due_by: null,
     })
+
 
   const handleClose = () => {
     setOpenEdit(!openEdit);
@@ -58,7 +57,17 @@ export default function Edit({
   function handleEdit(e){
     handleClose()
     e.preventDefault()
-    if (formData.name != '' && formData.due_by != null){
+    if(!formData.name){
+      globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Must enter a name for event', alertState: 'error'} })
+      setTimeout(() => {
+        globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+      }, 5000) 
+    }else if(!formData.due_by){
+      globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Must enter a due date in YYYY-MM-DD format', alertState: 'error'} })
+      setTimeout(() => {
+        globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+      }, 5000) 
+    }else if (formData.name != '' && formData.due_by != null){
         if(type == 'tasks' ){
             console.log(type, formData)
             const newObj = {
@@ -72,14 +81,20 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update task successful.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Update success', alertState: 'success'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)
                 return r.json()
               }
               else{
-                <Alert severity="error">Failed to update task.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Failed to update task', alertState: 'error'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)
               }
             })
-            .then(data => setTaskData([...taskData, data]))
+            .then(() => refetch())
         }else if(type == 'finances'){
             console.log(type, formData)
             const newObj = {
@@ -93,14 +108,20 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update finance successful.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Update success', alertState: 'success'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)
                 return r.json()
               }
               else{
-                <Alert severity="error">Failed to update finance.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Failed to update finance', alertState: 'error'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)              
               }
             })
-            .then(data => setFinanceData([...financeData, data]))
+            .then(() => refetch())
         }else if(type == 'appointments'){
             console.log(type, formData)
             const newObj = {
@@ -114,19 +135,21 @@ export default function Edit({
             })
             .then((r) => {
               if (r.ok){
-                <Alert severity="success">Update appointment successful.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Update success', alertState: 'success'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)
                 return r.json()
               }
               else{
-                <Alert severity="error">Failed to update appointment.</Alert>
+                globalState.dispatch({ type: 'OPEN-SNACKBAR', payload: {message: 'Failed to update appointment', alertState: 'error'} })
+                setTimeout(() => {
+                  globalState.dispatch({ type: 'CLOSE-SNACKBAR' })
+                }, 5000)  
               }
             })
-            .then(data => setAppointmentData([...appointmentData, data]))
+            .then(() => refetch())
         }
-    }else if(!formData.name){
-        return <Alert severity="error">Please enter a name.</Alert>
-    }else if(!formData.due_by){
-        return <Alert severity="error">Enter a date in the format YYYY/MM/DD HH:MM AM/PM.</Alert>
     }
   }
 
