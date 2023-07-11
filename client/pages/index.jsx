@@ -62,7 +62,7 @@ export default function Home() {
           <Grid xs={12} onClick={() => router.push('/finances')}>
             <FinanceCard financeData={financeData} setFinanceData={setFinanceData}/>
           </Grid>
-          {/* <Grid xs={12}>
+          <Grid xs={12}>
             <Typography variant="h6" gutterBottom>
             Google Calendar
             </Typography>
@@ -76,7 +76,7 @@ export default function Home() {
             <Typography variant="h6" gutterBottom>
             Weather
             </Typography>
-          </Grid> */}
+          </Grid>
         </Grid>
       </Box>
       </main>

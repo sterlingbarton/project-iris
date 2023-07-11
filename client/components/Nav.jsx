@@ -12,6 +12,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider'
+import { List, ListItem, ListItemIcon, ListItemButton, InboxIcon, ListItemText, MailIcon } from '@mui/material';
+
 import { GlobalState } from './Layout';
 
 
@@ -76,7 +80,8 @@ export default function OuterNav() {
 
 
   return (
-    <AppBar position="static">
+  <>
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
@@ -123,7 +128,7 @@ export default function OuterNav() {
                         Finances
                     </Typography>
                 </MenuItem>
-                {/* <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem onClick={handleCloseNavMenu}>
                     <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         News
                     </Typography>
@@ -137,7 +142,7 @@ export default function OuterNav() {
                     <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Calendar
                     </Typography>
-                </MenuItem> */}
+                </MenuItem>
               </Menu>
             </Box>
           <Typography
@@ -196,5 +201,50 @@ export default function OuterNav() {
         </Toolbar>
       </Container>
     </AppBar>
+    <Drawer
+      variant="permanent"
+      anchor='right'
+      sx={{
+        width: 240,
+        flexShrink: 0,
+        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box' },
+      }}
+    >
+     <Toolbar />
+     <Box sx={{ overflow: 'auto' }}>
+       <List>
+           <ListItem disablePadding>
+             <ListItemButton>
+               <ListItemText primary={'spotify'} />
+             </ListItemButton>
+           </ListItem>
+       </List>
+       <Divider />
+       <List>
+           <ListItem disablePadding>
+             <ListItemButton>
+               <ListItemText primary={'yelp'} />
+             </ListItemButton>
+           </ListItem>
+       </List>
+       <Divider />
+       <List>
+           <ListItem disablePadding>
+             <ListItemButton>
+               <ListItemText primary={'youtube'} />
+             </ListItemButton>
+           </ListItem>
+       </List> 
+       <Divider />
+       <List>
+           <ListItem disablePadding>
+             <ListItemButton>
+               <ListItemText primary={'google places'} />
+             </ListItemButton>
+           </ListItem>
+       </List>
+     </Box>
+   </Drawer>
+  </>
   );
 }
