@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Box from '@mui/material/Box';
 import {useRouter} from 'next/router';
 import TaskCard from '../components/TaskCard';
 
@@ -34,7 +35,9 @@ export default function Tasks() {
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
         <main>
-            <TaskCard taskData={taskData} setTaskData={setTaskData} refetch={refetch}/>
+            <Box sx={{ marginTop: '7rem' }}>
+                <TaskCard taskData={taskData} setTaskData={setTaskData} refetch={refetch}/>
+            </Box>
         </main>
     </>
   )

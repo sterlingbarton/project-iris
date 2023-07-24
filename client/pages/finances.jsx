@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Box from '@mui/material/Box';
 import {useRouter} from 'next/router';
 import FinanceCard from '../components/FinanceCard';
 
@@ -33,7 +34,9 @@ export default function Finances() {
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
         <main>
-            <FinanceCard financeData={financeData} setFinanceData={setFinanceData} refetch={refetch}/>
+            <Box sx={{ marginTop: '7rem' }}>
+                <FinanceCard financeData={financeData} setFinanceData={setFinanceData} refetch={refetch}/>
+            </Box>
         </main>
     </>
   )

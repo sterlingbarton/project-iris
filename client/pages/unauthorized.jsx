@@ -12,7 +12,7 @@ export default function Unauthorized() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-        <Box sx={{'margin': '2em'}}>
+        <Box sx={{ margin: '7rem 4rem' }}>
             <Typography variant='h2' gutterBottom>Unauthorized</Typography>
             <Typography variant='p'>Please&nbsp;<Link href={'/login'}>Login</Link> to view this page.</Typography>
         </Box>

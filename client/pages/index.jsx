@@ -3,7 +3,6 @@ import Head from 'next/head';
 import {useRouter} from 'next/router'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import Typography from '@mui/material/Typography';
 import TaskCard from '../components/TaskCard';
 import ApptCard from '../components/ApptCard';
 import FinanceCard from '../components/FinanceCard';
@@ -51,31 +50,16 @@ export default function Home() {
         </Head>
 
       <main>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, marginTop: '3rem' }}>
         <Grid container spacing={2}>
-          <Grid xs={12} onClick={() => router.push('/tasks')}>
+          <Grid xs={12} lg={4} onClick={() => router.push('/tasks')}>
             <TaskCard taskData={taskData} setTaskData={setTaskData}/>
           </Grid>
-          <Grid xs={12} onClick={() => router.push('/appointments')}>
+          <Grid xs={12} lg={4} onClick={() => router.push('/appointments')}>
             <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData}/>
           </Grid>
-          <Grid xs={12} onClick={() => router.push('/finances')}>
+          <Grid xs={12} lg={4} onClick={() => router.push('/finances')}>
             <FinanceCard financeData={financeData} setFinanceData={setFinanceData}/>
-          </Grid>
-          <Grid xs={12}>
-            <Typography variant="h6" gutterBottom>
-            Google Calendar
-            </Typography>
-          </Grid>
-          <Grid xs={12}>
-            <Typography variant="h6" gutterBottom>
-            News
-            </Typography>
-          </Grid>
-          <Grid xs={12}>
-            <Typography variant="h6" gutterBottom>
-            Weather
-            </Typography>
           </Grid>
         </Grid>
       </Box>

@@ -72,7 +72,7 @@ export default function LogIn() {
         </Head>
         <main>
           <Card sx={{
-            margin: '3rem auto',
+            margin: '7rem auto',
             maxWidth: '700px',
           }}>
             <CardContent sx={{

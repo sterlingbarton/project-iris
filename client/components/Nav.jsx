@@ -57,10 +57,10 @@ export default function OuterNav() {
         .then(() => router.push('/login'))
     }
     
-    function showUserPage(){
-        handleCloseUserMenu()
-        router.push('/profile')
-    }
+    // function showUserPage(){
+    //     handleCloseUserMenu()
+    //     router.push('/profile')
+    // }
   
     function handleCloseNavMenu() {
         setAnchorElNav(null);
@@ -70,9 +70,9 @@ export default function OuterNav() {
       setAnchorElNav(event.currentTarget);
     };
 
-    function handleOpenUserMenu(event) {
-    setAnchorElUser(event.currentTarget);
-    };
+    // function handleOpenUserMenu(event) {
+    // setAnchorElUser(event.currentTarget);
+    // };
 
     function handleCloseUserMenu() {
     setAnchorElUser(null);
@@ -128,21 +128,6 @@ export default function OuterNav() {
                         Finances
                     </Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
-                    </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Weather
-                    </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign={'left'} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Calendar
-                    </Typography>
-                </MenuItem>
               </Menu>
             </Box>
           <Typography
@@ -164,87 +149,20 @@ export default function OuterNav() {
             IRIS
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip>
                 {globalState.state.isLoggedIn ? 
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src="https://media.licdn.com/dms/image/D4E03AQEoSSLrCiBRiw/profile-displayphoto-shrink_400_400/0/1682359181635?e=1692835200&v=beta&t=jxXx3Tn0XydBbmzPgKdBtew3bwhJYQKcc1dBWU5xle8" />
-                    </IconButton> 
+                  <div>
+                    <Button variant="outlined" onClick={() => router.push('/profile')}>Profile</Button>
+                    <Button variant="outlined" onClick={logOut}>Logout</Button>
+                  </div>
                     :
-                    <Button variant="default" href={'/login'}>Log In</Button>
-                    
+                    <Button variant="default" href={'/login'}>Log In</Button> 
                 }
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-                <MenuItem onClick={showUserPage}>
-                    <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                <MenuItem onClick={logOut}>
-                    <Typography textAlign="center">Logout</Typography>
-                </MenuItem>
-            </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
-    <Drawer
-      variant="permanent"
-      anchor='right'
-      sx={{
-        width: 240,
-        flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box' },
-      }}
-    >
-     <Toolbar />
-     <Box sx={{ overflow: 'auto' }}>
-       <List>
-           <ListItem disablePadding>
-             <ListItemButton>
-               <ListItemText primary={'spotify'} />
-             </ListItemButton>
-           </ListItem>
-       </List>
-       <Divider />
-       <List>
-           <ListItem disablePadding>
-             <ListItemButton>
-               <ListItemText primary={'yelp'} />
-             </ListItemButton>
-           </ListItem>
-       </List>
-       <Divider />
-       <List>
-           <ListItem disablePadding>
-             <ListItemButton>
-               <ListItemText primary={'youtube'} />
-             </ListItemButton>
-           </ListItem>
-       </List> 
-       <Divider />
-       <List>
-           <ListItem disablePadding>
-             <ListItemButton>
-               <ListItemText primary={'google places'} />
-             </ListItemButton>
-           </ListItem>
-       </List>
-     </Box>
-   </Drawer>
   </>
   );
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Box from '@mui/material/Box';
 import {useRouter} from 'next/router';
 import ApptCard from '../components/ApptCard';
 
@@ -33,7 +34,9 @@ export default function Appointments() {
             <link rel="icon" href="/favicon.ico" /> 
         </Head>
         <main>
-            <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData} refetch={refetch}/>
+            <Box sx={{ marginTop: '7rem' }}>
+                <ApptCard appointmentData={appointmentData} setAppointmentData={setAppointmentData} refetch={refetch}/>
+            </Box>
         </main>
     </>
   )

@@ -14,7 +14,7 @@ export default function NotFound() {
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-            <Box sx={{'margin': '2em'}}>
+            <Box sx={{ margin: '7rem 4rem' }}>
                 <Typography variant='h1'>Oooops...</Typography>
                 <Typography variant='h2'>This page cannot be found.</Typography>
                 <Typography variant='p'>Go back to&nbsp;<Link href={'/'}>Home</Link></Typography>
