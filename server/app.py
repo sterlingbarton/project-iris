@@ -102,8 +102,8 @@ class TasksPath(Resource):
             new_task = Task(
                 name=request.get_json()['name'],
                 due_by=datetime.strptime(
-                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
-                user_id=request.get_json()['user_id']
+                    request.get_json()['due_by'], "%Y-%m-%d %H:%M"),
+                user_id=session['user_id']
             )
             db.session.add(new_task)
             db.session.commit()
@@ -131,7 +131,7 @@ class TaskByID(Resource):
                     if value:
                         if attr == "due_by":
                             new_date = (datetime.strptime(
-                                value, "%Y-%m-%d %I:%M:%S"))
+                                value, "%Y-%m-%d %H:%M"))
                             setattr(task, attr, new_date)
                         else:
                             setattr(task, attr, value)
@@ -161,8 +161,8 @@ class AppointmentsPath(Resource):
             new_appointment = Appointment(
                 name=request.get_json()['name'],
                 due_by=datetime.strptime(
-                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
-                user_id=request.get_json()['user_id']
+                    request.get_json()['due_by'], "%Y-%m-%d %H:%M"),
+                user_id=session['user_id']
             )
             db.session.add(new_appointment)
             db.session.commit()
@@ -192,7 +192,7 @@ class AppointmentByID(Resource):
                     if value:
                         if attr == "due_by":
                             new_date = (datetime.strptime(
-                                value, "%Y-%m-%d %I:%M:%S"))
+                                value, "%Y-%m-%d %H:%M"))
                             setattr(appointment, attr, new_date)
                         else:
                             setattr(appointment, attr, value)
@@ -223,8 +223,8 @@ class FinancesPath(Resource):
             new_finance = Finance(
                 name=request.get_json()['name'],
                 due_by=datetime.strptime(
-                    request.get_json()['due_by'], "%Y-%m-%d %I:%M:%S"),
-                user_id=request.get_json()['user_id']
+                    request.get_json()['due_by'], "%Y-%m-%d %H:%M"),
+                user_id=session['user_id']
             )
             db.session.add(new_finance)
             db.session.commit()
@@ -252,7 +252,7 @@ class FinanceByID(Resource):
                     if value:
                         if attr == "due_by":
                             new_date = (datetime.strptime(
-                                value, "%Y-%m-%d %I:%M:%S"))
+                                value, "%Y-%m-%d %H:%M"))
                             setattr(finance, attr, new_date)
                         else:
                             setattr(finance, attr, value)
