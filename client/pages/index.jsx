@@ -50,8 +50,8 @@ export default function Home() {
         </Head>
 
       <main>
-      <Box sx={{ flexGrow: 1, marginTop: '3rem' }}>
-        <Grid container spacing={2}>
+      <Box sx={{ flexGrow: 1, margin: '3rem' }}>
+        <Grid container>
           <Grid xs={12} lg={4} onClick={() => router.push('/tasks')}>
             <TaskCard taskData={taskData} setTaskData={setTaskData}/>
           </Grid>

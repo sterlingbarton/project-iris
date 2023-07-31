@@ -8,13 +8,11 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+import ButtonGroup from '@mui/material/ButtonGroup'
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider'
-import { List, ListItem, ListItemIcon, ListItemButton, InboxIcon, ListItemText, MailIcon } from '@mui/material';
+
 
 import { GlobalState } from './Layout';
 
@@ -56,11 +54,6 @@ export default function OuterNav() {
         .then(data => globalState.dispatch({ type: 'LOGOUT', payload: data}))
         .then(() => router.push('/login'))
     }
-    
-    // function showUserPage(){
-    //     handleCloseUserMenu()
-    //     router.push('/profile')
-    // }
   
     function handleCloseNavMenu() {
         setAnchorElNav(null);
@@ -69,10 +62,6 @@ export default function OuterNav() {
     function handleOpenNavMenu(event) {
       setAnchorElNav(event.currentTarget);
     };
-
-    // function handleOpenUserMenu(event) {
-    // setAnchorElUser(event.currentTarget);
-    // };
 
     function handleCloseUserMenu() {
     setAnchorElUser(null);
@@ -151,10 +140,10 @@ export default function OuterNav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip>
                 {globalState.state.isLoggedIn ? 
-                  <div>
-                    <Button variant="outlined" onClick={() => router.push('/profile')}>Profile</Button>
-                    <Button variant="outlined" onClick={logOut}>Logout</Button>
-                  </div>
+                  <ButtonGroup>
+                    <Button variant="default" onClick={() => router.push('/profile')}>Profile</Button>
+                    <Button variant="default" onClick={logOut}>Logout</Button>
+                  </ButtonGroup>
                     :
                     <Button variant="default" href={'/login'}>Log In</Button> 
                 }
